@@ -37,6 +37,7 @@ They will tell you “Hey, you are stubbing the wrong thing here!”
 *It also assures those stubbed collaborators classes EXIST and have an INTERFACE.
 
 The syntax is quite simple and similar:
+
     stub(meeting_with_M: [top_secret_briefing])
     fake(:M, meeting_with_M: [top_secret_briefing])
 		
