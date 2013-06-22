@@ -12,15 +12,13 @@ Bogus is a library that aims to reduce the risks associated with isolated unit t
 
 ## Problem
 It can be summarized by “Programming by wishful thinking.”
-Classes under test not only know how methods work
--> they also specify how tested classes will interact with it’s collaborators
--> and what those collaborators will be
-
+Classes under test not only know how methods work.
+-> they also specify how tested classes will interact with it’s collaborators.
+-> and what those collaborators will be.
 This top-down system design, where classes get implemented before other collaborators exist yet, seems to be a very good thing in principle. You only implement what you need.
 
 ## BUT!
 The same freedom from not having to implement collaborators can quickly turn on you.
-
 Once the tested class is implemented – what tells you that the collaborators aren’t implemented yet?
 ### In Plain English
 This kind of stabbing requires you to write integration or end-to-end tests => you have to make sure the pieces fit together.
