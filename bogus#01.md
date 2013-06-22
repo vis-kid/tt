@@ -45,14 +45,14 @@ To test the Mission class you need 3 classes – 2 of them stubbed out:
 Mission, M and Q.
 
     describe Mission do
-			it "checks protocol for 007’s mission start" do
-				briefing = fake(:M, meeting_with_M: [top_secret_briefing])
-				gadgets  = fake(:Q, meeting_with_Q: [stylish_Aston_Martin, laser_Rolex])
+      it "checks protocol for 007’s mission start" do
+        briefing = fake(:M, meeting_with_M: [top_secret_briefing])
+        gadgets  = fake(:Q, meeting_with_Q: [stylish_Aston_Martin, laser_Rolex])
 
-				mission_start = Mission.new(briefing, gadgets)
-				mission_start.check_protocol.should == mission_is_a_go
-			end
-		end
+        mission_start = Mission.new(briefing, gadgets)
+	      mission_start.check_protocol.should == mission_is_a_go
+	    end
+    end
 
 Very similar syntax that you’re used to but adds a lot of goodies.
 This creates the M and Q classes and provide an interface. 
@@ -63,40 +63,40 @@ The neat thing you can do to DRY your stubs is pulling them out in a fakes.rb fi
 
 The syntax is straight forward and looks like this:
 
-		Bogus.fakes do
-			fake(:m) do
-				drop_a_random_lexical_question_on_007 ["Well done James!"]
-			end
+    Bogus.fakes do
+      fake(:m) do
+        drop_a_random_lexical_question_on_007 ["Well done James!"]
+      end
 
-			fake(:james_bond) do
-				asked_random_lexical_question [witty_answer]
-			end
-		end
+      fake(:james_bond) do
+        asked_random_lexical_question [witty_answer]
+      end
+    end
 	
 This creates fakes for the **M** and **JamesBond** classes and provide methods with return values. If you want to change the fakes you can do it now in one central place and the fakes in your tests get updated. Pretty cool! 
 
 In your tests you only have to tell your test blocks what fake you wanna use:
 
-		describe MissionBriefing do
-			let(:tricky_question) { "How many agents were killed in the James Bond series?" }
+    describe MissionBriefing do
+      let(:tricky_question) { "How many agents were killed in the James Bond series?" }
 
-			describe M do
-				fake(:james_bond)
+      describe M do
+        fake(:james_bond)
 
-				it "drops random lexical questions on 007 "
-					JamesBond.asked_lexical_question(tricky_question)			
-					M.should have_received(witty_answer)
-				end
+        it "drops random lexical questions on 007 "
+          JamesBond.asked_lexical_question(tricky_question)			
+          M.should have_received(witty_answer)
+      end
 
-			describe JamesBond do
-				fake(:m)
-				verify_contract(:james_bond)
+      describe JamesBond do
+        fake(:m)
+        verify_contract(:james_bond)
 
-				it "impress M with random knowledge bombs" do
-					M.drop_a_random_lexical_question_on_007(tricky_question)
-					JamesBond.should have_received("Well done James!")
-				end
-			end
-		end
+        it "impress M with random knowledge bombs" do
+          M.drop_a_random_lexical_question_on_007(tricky_question)
+          JamesBond.should have_received("Well done James!")
+        end
+      end
+    end
 
 I’m sure you’re wondering about the    verify_contract(:james_bond) part...
