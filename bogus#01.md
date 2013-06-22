@@ -27,8 +27,8 @@ Another potential problem lurks in the dark because those stubbed collaborators 
 Bogus makes your test doubles more ASSERTIVE!
 They will tell you “Hey, you are stubbing the wrong thing here!”
 
-*It does not only make sure the stubbed class work in your tests
-*It also assures those stubbed collaborators classes EXIST and have an INTERFACE.
+* It does not only make sure the stubbed class work in your tests.
+* It also assures those stubbed collaborators classes EXIST and have an INTERFACE.
 
 The syntax is quite simple and similar:
 
