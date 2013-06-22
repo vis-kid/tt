@@ -29,7 +29,7 @@ The problem with those integration tests is that they unnecessarily add slower a
 
 Another potential problem lurks in the dark because those stubbed collaborators will likely be interacting with more objects than the tested class. => which opens the door wide open for duplication. You know what awaits you if you wanna change the collaborators later on... Remember all the places where you created that stub? Your tests won’t help you – they don’t have a clue what the collaborators interface should look like.
 
-THE SOLUTION:
+# THE SOLUTION:
 Bogus makes your test doubles more ASSERTIVE!
 They will tell you “Hey, you are stubbing the wrong thing here!”
 
