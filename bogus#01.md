@@ -2,15 +2,15 @@
 
 Bogus is a library that aims to reduce the risks associated with isolated unit testing.
 
-  it "checks protocol for 007’s mission start" do
-		briefing = stub( meeting_with_M: [top_secret_briefing]) 
-		gadgets  = stub( meeting_with_Q: [stylish_Aston_Martin, laser_Rolex])
+it "checks protocol for 007’s mission start" do
+ briefing = stub( meeting_with_M: [top_secret_briefing]) 
+ gadgets  = stub( meeting_with_Q: [stylish_Aston_Martin, laser_Rolex])
 
-		mission_start = Mission.new(briefing, gadgets)
-		mission_start.check_protocol.should == mission_is_a_go
-	end
+ mission_start = Mission.new(briefing, gadgets)
+ mission_start.check_protocol.should == mission_is_a_go
+end
 
-## Problem:
+## Problem
 It can be summarized by “Programming by wishful thinking.”
 Classes under test not only know how methods work
 -> they also specify how tested classes will interact with it’s collaborators
@@ -22,14 +22,14 @@ This top-down system design, where classes get implemented before other collabor
 The same freedom from not having to implement collaborators can quickly turn on you.
 
 Once the tested class is implemented – what tells you that the collaborators aren’t implemented yet?
-### In Plain English:
+### In Plain English
 This kind of stabbing requires you to write integration or end-to-end tests => you have to make sure the pieces fit together.
 
 The problem with those integration tests is that they unnecessarily add slower and harder to set up tests to cover all the integration points between the objects/collaborators.
 
 Another potential problem lurks in the dark because those stubbed collaborators will likely be interacting with more objects than the tested class. => which opens the door wide open for duplication. You know what awaits you if you wanna change the collaborators later on... Remember all the places where you created that stub? Your tests won’t help you – they don’t have a clue what the collaborators interface should look like.
 
-## THE SOLUTION:
+## THE SOLUTION
 Bogus makes your test doubles more ASSERTIVE!
 They will tell you “Hey, you are stubbing the wrong thing here!”
 
