@@ -13,17 +13,13 @@ Bogus is a library that aims to reduce the risks associated with isolated unit t
 ## Problem
 It can be summarized by “Programming by wishful thinking.”
 Classes under test not only know how methods work.
--> they also specify how tested classes will interact with it’s collaborators.
--> and what those collaborators will be.
-This top-down system design, where classes get implemented before other collaborators exist yet, seems to be a very good thing in principle. You only implement what you need.
+-> they also specify how tested classes will interact with it’s collaborators and what those collaborators will be. This top-down system design, where classes get implemented before other collaborators exist yet, seems to be a very good thing in principle. You only implement what you need.
 
 ## BUT!
 The same freedom from not having to implement collaborators can quickly turn on you.
 Once the tested class is implemented – what tells you that the collaborators aren’t implemented yet?
 ### In Plain English
-This kind of stabbing requires you to write integration or end-to-end tests => you have to make sure the pieces fit together.
-
-The problem with those integration tests is that they unnecessarily add slower and harder to set up tests to cover all the integration points between the objects/collaborators.
+This kind of stabbing requires you to write integration or end-to-end tests => you have to make sure the pieces fit together. The problem with those integration tests is that they unnecessarily add slower and harder to set up tests to cover all the integration points between the objects/collaborators.
 
 Another potential problem lurks in the dark because those stubbed collaborators will likely be interacting with more objects than the tested class. => which opens the door wide open for duplication. You know what awaits you if you wanna change the collaborators later on... Remember all the places where you created that stub? Your tests won’t help you – they don’t have a clue what the collaborators interface should look like.
 
