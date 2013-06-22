@@ -38,8 +38,8 @@ They will tell you “Hey, you are stubbing the wrong thing here!”
 
 The syntax is quite simple and similar:
     stub(meeting_with_M: [top_secret_briefing])
-=>
     fake(:M, meeting_with_M: [top_secret_briefing])
+		
 => faked class M exits now and has an interface through #meeting_with_M and returns [top_secret_briefing]
 
 To test the mission_start you need 3 classes – 2 of them stubbed out:
@@ -63,6 +63,7 @@ The neat thing you can do to DRY your stubs pulling them out in a fakes.rb file 
 You can put methods that return values in this fakes file. All you need to do is provide a reasonable default return value for those methods.
 
 The syntax looks like this:
+
 		Bogus.fakes do
 			fake(:m) do
 				drop_a_random_lexical_question_on_007 ["Well done James!"]
