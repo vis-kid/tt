@@ -50,7 +50,7 @@ Mission, M and Q.
         gadgets  = fake(:Q, meeting_with_Q: [stylish_Aston_Martin, laser_Rolex])
 
         mission_start = Mission.new(briefing, gadgets)
-	      mission_start.check_protocol.should == mission_is_a_go
+        mission_start.check_protocol.should == mission_is_a_go
 	    end
     end
 
