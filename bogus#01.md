@@ -86,7 +86,7 @@ In your tests you only have to tell your test blocks what fake you wanna use:
         it "drops random lexical questions on 007 "
           JamesBond.asked_lexical_question(tricky_question)			
           M.should have_received(witty_answer)
-      end
+        end
 
       describe JamesBond do
         fake(:m)
