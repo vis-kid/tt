@@ -37,21 +37,21 @@ They will tell you “Hey, you are stubbing the wrong thing here!”
 *It also assures those stubbed collaborators classes EXIST and have an INTERFACE.
 
 The syntax is quite simple and similar:
-stub(meeting_with_M: [top_secret_briefing])
+    stub(meeting_with_M: [top_secret_briefing])
 =>
-fake(:M, meeting_with_M: [top_secret_briefing])
+    fake(:M, meeting_with_M: [top_secret_briefing])
 => faked class M exits now and has an interface through #meeting_with_M and returns [top_secret_briefing]
 
 To test the mission_start you need 3 classes – 2 of them stubbed out:
 Mission, M and Q
 
-it "checks protocol for 007’s mission start" do
-  briefing = fake(:M, meeting_with_M: [top_secret_briefing])
-	gadgets  = fake(:Q, meeting_with_Q: [stylish_Aston_Martin, laser_Rolex])
+		it "checks protocol for 007’s mission start" do
+			briefing = fake(:M, meeting_with_M: [top_secret_briefing])
+			gadgets  = fake(:Q, meeting_with_Q: [stylish_Aston_Martin, laser_Rolex])
 
-	mission_start = Mission.new(briefing, gadgets)
-	mission_start.check_protocol.should == mission_is_a_go
-end
+			mission_start = Mission.new(briefing, gadgets)
+			mission_start.check_protocol.should == mission_is_a_go
+		end
 
 Very similar syntax that you’re used to but adds a lot of goodies.
 The question arises of course, “How much DRYer is this solution really?”
@@ -63,39 +63,39 @@ The neat thing you can do to DRY your stubs pulling them out in a fakes.rb file 
 You can put methods that return values in this fakes file. All you need to do is provide a reasonable default return value for those methods.
 
 The syntax looks like this:
-Bogus.fakes do
-  fake(:m) do
-    drop_a_random_lexical_question_on_007 ["Well done James!"]
-	end
+		Bogus.fakes do
+			fake(:m) do
+				drop_a_random_lexical_question_on_007 ["Well done James!"]
+			end
 
-  fake(:james_bond) do
-	  asked_random_lexical_question [witty_answer]
-	end
-end
+			fake(:james_bond) do
+				asked_random_lexical_question [witty_answer]
+			end
+		end
 
 In the test you only have to use it like this:
 
-describe MissionBriefing do
-  let(:witty_question) { "How many agents were killed in the James Bond series?" }
+		describe MissionBriefing do
+			let(:witty_question) { "How many agents were killed in the James Bond series?" }
 
-  describe M do
-		fake(:james_bond)
+			describe M do
+				fake(:james_bond)
 
-		it "drops random lexical questions on 007 "
-      JamesBond.asked_lexical_question(witty_question)			
-			M.should have_received(witty_answer)
+				it "drops random lexical questions on 007 "
+					JamesBond.asked_lexical_question(witty_question)			
+					M.should have_received(witty_answer)
+				end
+
+			describe JamesBond do
+				fake(:m)
+				verify_contract(:james_bond)
+
+				it "impress M with random knowledge bombs" do
+					M.drop_a_random_lexical_question_on_007(witty_question)
+					JamesBond.should have_received("Well done James!")
+				end
+			end
 		end
-
-	describe JamesBond do
-		fake(:m)
-		verify_contract(:james_bond)
-
-		it "impress M with random knowledge bombs" do
-			M.drop_a_random_lexical_question_on_007(witty_question)
-			JamesBond.should have_received("Well done James!")
-		end
-	end
-end
 
 
 
