@@ -50,12 +50,9 @@ Mission, M and Q
 
 Very similar syntax that you’re used to but adds a lot of goodies.
 The question arises of course, “How much DRYer is this solution really?”
-???
-The documentation says it’s slightly better for drying up your code. You only  need to ever stub methods that return meaningful values.
-???
 
-The neat thing you can do to DRY your stubs pulling them out in a fakes.rb file in spec/support/fakes.rb
-You can put methods that return values in this fakes file. All you need to do is provide a reasonable default return value for those methods.
+
+The neat thing you can do to DRY your stubs pulling them out in a fakes.rb file in spec/support/fakes.rb You can put methods that return values in this fakes file. All you need to do is provide a reasonable default return value for those methods.
 
 The syntax looks like this:
 
