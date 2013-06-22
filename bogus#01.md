@@ -100,5 +100,7 @@ In your tests you only have to tell your test blocks what fake you wanna use:
     end
 
 I’m sure you’re wondering about the
+
     verify_contract(:james_bond)
+
 part...
