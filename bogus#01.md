@@ -3,11 +3,11 @@
 Bogus is a library that aims to reduce the risks associated with isolated unit testing.
 
 it "checks protocol for 007’s mission start" do
- briefing = stub( meeting_with_M: [top_secret_briefing]) 
- gadgets  = stub( meeting_with_Q: [stylish_Aston_Martin, laser_Rolex])
+  briefing = stub( meeting_with_M: [top_secret_briefing]) 
+  gadgets  = stub( meeting_with_Q: [stylish_Aston_Martin, laser_Rolex])
 
- mission_start = Mission.new(briefing, gadgets)
- mission_start.check_protocol.should == mission_is_a_go
+  mission_start = Mission.new(briefing, gadgets)
+  mission_start.check_protocol.should == mission_is_a_go
 end
 
 ## Problem
