@@ -33,6 +33,7 @@ They will tell you:
 
 * It does not only make sure the stubbed class work in your tests.
 * It also assures those stubbed collaborators classes EXIST and have an INTERFACE.
+* Finally it checks the the number of arguments provided.
 
 The syntax is quite simple and similar to regular stubs:
 
@@ -82,6 +83,7 @@ In your tests you only have to tell your test blocks what fake you wanna use:
 
       describe M do
         fake(:james_bond)
+				verify_contract(:james_bond)
 
         it "drops random lexical questions on 007 "
           JamesBond.asked_lexical_question(tricky_question)			
@@ -90,7 +92,6 @@ In your tests you only have to tell your test blocks what fake you wanna use:
 
       describe JamesBond do
         fake(:m)
-        verify_contract(:james_bond)
 
         it "impress M with random knowledge bombs" do
           M.drop_a_random_lexical_question_on_007(tricky_question)
@@ -99,8 +100,25 @@ In your tests you only have to tell your test blocks what fake you wanna use:
       end
     end
 
-I’m sure you’re wondering about the
+**Contract tests
+
+Contract tests are an idea, that whenever we stub something with a meaningful return value, we should add a test for the stubbed object. 
+
+I’m sure you’re wondering about this part:
 
     verify_contract(:james_bond)
 
-part...
+This line verifies that the stubbed methods are also tested by you. It reminds you to write tests for them and through that it helps you to put together those integration points between collaborators. Bogus won’t be able to write the tests for you, but reminding you to do so provides a lot of value and helps you to keep track of your temporary collaborators. 
+
+Whenever you use named fakes like
+
+    fake(:james_bond)
+
+Bogus will remember any interactions you set up on that fake. If you want to verify that you tested all the scenarios specified by stubbing/spying/mocking on the fake object.
+
+    verify_contract(:fake_name)
+
+
+We’ll dive more into test-doubles with Bogus in the next video.
+
+***Stay shipping!***
