@@ -114,10 +114,11 @@ Whenever you use named fakes like
 
     fake(:james_bond)
 
-Bogus will remember any interactions you set up on that fake. If you want to verify that you tested all the scenarios specified by stubbing/spying/mocking on the fake object.
+Bogus will remember any interactions you set up on that fake. If you want to verify that you tested all the scenarios specified by stubbing/spying/mocking on the fake object –
 
     verify_contract(:fake_name)
 
+– is your friend.
 
 We’ll dive more into test-doubles with Bogus in the next video.
 
