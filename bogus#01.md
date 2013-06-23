@@ -100,7 +100,7 @@ In your tests you only have to tell your test blocks what fake you wanna use:
       end
     end
 
-**Contract tests
+**Contract tests**
 
 Contract tests are an idea, that whenever we stub something with a meaningful return value, we should add a test for the stubbed object. 
 
